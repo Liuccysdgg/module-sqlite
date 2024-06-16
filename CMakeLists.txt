@@ -52,7 +52,6 @@ if(MSVC)
 			IPHLPAPI.lib
 			WS2_32.lib
 			Shell32.lib
-			D:/3rdparty/hiredis/build/Release/hiredis.lib
 			${YLIB}/lib/libcrypto_static_win64.lib
 			$<$<CONFIG:Debug>:${FASTWEB}/bin/debug/3rdparty/lib/lua.lib>
 			$<$<CONFIG:Debug>:${YLIB}/lib/ylib_d.lib>

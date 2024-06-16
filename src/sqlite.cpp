@@ -128,7 +128,7 @@ sol::table module::sqlite_result::table(sol::this_state s)
 
 void module::sqlite_result::regist(sol::state* lua)
 {
-    lua->new_usertype<module::sqlite_result>("sqlite_result",
+    lua->new_usertype<module::sqlite_result>("fw_sqlite_result",
         "field_name", &module::sqlite_result::field_name,
         "get", &module::sqlite_result::get,
         "next", &module::sqlite_result::next,
@@ -196,7 +196,7 @@ std::string module::sqlite_db::last_error()
 
 void module::sqlite_db::regist(sol::state* lua)
 {
-    lua->new_usertype<module::sqlite_db>("sqlite_db",
+    lua->new_usertype<module::sqlite_db>("fw_sqlite_db",
         "new", sol::constructors<module::sqlite_db()>(),
         "setsql", &module::sqlite_db::setsql,
         "begin", &module::sqlite_db::begin,
@@ -271,7 +271,7 @@ std::shared_ptr<module::sqlite_result> module::sqlite_prepare_statement::query()
 
 void module::sqlite_prepare_statement::regist(sol::state* lua)
 {
-    lua->new_usertype<module::sqlite_prepare_statement>("sqlite_prepare_statement",
+    lua->new_usertype<module::sqlite_prepare_statement>("fw_sqlite_prepare_statement",
         "update", &module::sqlite_prepare_statement::update,
         "clear", &module::sqlite_prepare_statement::clear,
         "query", &module::sqlite_prepare_statement::query,
