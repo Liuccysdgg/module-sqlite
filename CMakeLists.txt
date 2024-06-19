@@ -35,11 +35,21 @@ set(YLIB ${CMAKE_INSTALL_PREFIX}/../ylib)
 set(FASTWEB ${CMAKE_INSTALL_PREFIX}/../fastweb)
 
 # 包含路径
-include_directories(
-	${YLIB}/include
-	${FASTWEB}/include
-	${FASTWEB}/include/lua
-)
+if(MSVC)
+	include_directories(
+		${YLIB}/include
+		${FASTWEB}/include
+		${FASTWEB}/include/lua
+	)
+	add_definitions(/bigobj)
+	set(MYSQL_CPP_LIB_DIR "$ENV{USERPROFILE}/MySQL/MySQL Connector C++ 8.2.0/lib64")
+else()
+	include_directories(
+		/usr/local/include/ylib
+		/usr/local/include/fastweb
+		/usr/local/include)
+	add_definitions(-DfPIC)
+endif()
 
 # 添加共享库
 add_library(${MODULE_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
@@ -65,7 +75,7 @@ else()
 	target_link_libraries(${MODULE_NAME} 
 			ylib
 			crypto
-			lua5.3
+			lua
 			pthread
 	)
 
